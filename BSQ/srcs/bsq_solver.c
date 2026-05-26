@@ -1,5 +1,9 @@
 #include "bsq.h"
 
+/*
+** get_min: Returns the smallest of three integers.
+** This is the core logic for the Dynamic Programming square finding.
+*/
 int	get_min(int a, int b, int c)
 {
 	int	m;
@@ -12,6 +16,9 @@ int	get_min(int a, int b, int c)
 	return (m);
 }
 
+/*
+** set_best: Updates the 'best' square coordinates if a larger one is found.
+*/
 void	set_best(t_square *best, int val, int r, int c)
 {
 	if (val > best->size)
@@ -22,6 +29,12 @@ void	set_best(t_square *best, int val, int r, int c)
 	}
 }
 
+/*
+** calc_val: Calculates the value for a cell in the DP table.
+** If cell is an obstacle: value is 0.
+** If cell is on the top or left edge: value is 1 (if not obstacle).
+** Otherwise: value is 1 + min of neighbors (top, left, top-left).
+*/
 int	calc_val(t_map *map, int **dp, int r, int c)
 {
 	if (map->grid[r][c] == map->obs)
@@ -31,6 +44,9 @@ int	calc_val(t_map *map, int **dp, int r, int c)
 	return (1 + get_min(dp[r - 1][c], dp[r][c - 1], dp[r - 1][c - 1]));
 }
 
+/*
+** free_dp: Frees the temporary integer grid used for calculation.
+*/
 void	free_dp(int **dp, int rows)
 {
 	int	i;
@@ -44,6 +60,13 @@ void	free_dp(int **dp, int rows)
 	free(dp);
 }
 
+/*
+** solve_bsq: Implements the Dynamic Programming algorithm.
+** 1. Creates a 2D integer table (dp).
+** 2. Iterates through the map to fill the table.
+** 3. Each number in the table represents the size of the largest
+**    square ending at that coordinate.
+*/
 t_square	solve_bsq(t_map *map)
 {
 	t_square	best;

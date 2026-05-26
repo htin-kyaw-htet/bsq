@@ -1,5 +1,9 @@
 #include "bsq.h"
 
+/*
+** print_cell: Determines if a cell should be printed as the map content
+** or as the 'full' character (if it's part of the biggest square).
+*/
 void	print_cell(t_map *map, t_square sq, int r, int c)
 {
 	int	in_y;
@@ -13,6 +17,9 @@ void	print_cell(t_map *map, t_square sq, int r, int c)
 		ft_putchar(map->grid[r][c]);
 }
 
+/*
+** display_result: Iterates through the grid and prints each row.
+*/
 void	display_result(t_map *map, t_square sq)
 {
 	int	r;
@@ -32,6 +39,9 @@ void	display_result(t_map *map, t_square sq)
 	}
 }
 
+/*
+** display_error: Prints the standard "map error" message as required.
+*/
 void	display_error(void)
 {
 	write(1, "map error\n", 10);

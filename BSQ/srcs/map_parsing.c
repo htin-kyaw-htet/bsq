@@ -1,5 +1,8 @@
 #include "bsq.h"
 
+/*
+** init_map: Allocates memory for the map structure and sets defaults.
+*/
 t_map	*init_map(void)
 {
 	t_map	*map;
@@ -13,6 +16,13 @@ t_map	*init_map(void)
 	return (map);
 }
 
+/*
+** parse_map: The main orchestrator for map loading.
+** 1. Reads the header line.
+** 2. Validates the header.
+** 3. Allocates memory for the grid rows.
+** 4. Reads each row of the map.
+*/
 t_map	*parse_map(int fd)
 {
 	t_map	*map;

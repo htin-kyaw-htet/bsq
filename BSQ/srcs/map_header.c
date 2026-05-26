@@ -1,5 +1,14 @@
 #include "bsq.h"
 
+/*
+** validate_header: Checks if the first line of the map file is valid.
+** It extracts:
+** - map->rows: Number of lines in the map.
+** - map->empty: Character for empty cells.
+** - map->obs: Character for obstacles.
+** - map->full: Character to draw the square.
+** Returns 1 if valid, 0 if invalid.
+*/
 int	validate_header(t_map *map, char *h)
 {
 	int	len;
@@ -20,6 +29,10 @@ int	validate_header(t_map *map, char *h)
 	return (1);
 }
 
+/*
+** read_header: Reads only the first line of the file (until \n).
+** This line contains the map information.
+*/
 char	*read_header(int fd)
 {
 	char	*line;

@@ -1,5 +1,12 @@
 #include "bsq.h"
 
+/*
+** process_file: This function handles a single map file.
+** 1. It opens the file (or uses stdin if filename is NULL).
+** 2. It calls parse_map to read and validate the map content.
+** 3. If valid, it calls solve_bsq to find the square and display_result to print it.
+** 4. Finally, it cleans up memory and closes the file.
+*/
 void	process_file(char *filename)
 {
 	int			fd;
@@ -28,6 +35,12 @@ void	process_file(char *filename)
 		close(fd);
 }
 
+/*
+** main: The entry point of the program.
+** - If no arguments are given, it reads from standard input (argc == 1).
+** - If arguments are given, it processes each file one by one.
+** - It prints a newline between solutions as required by the subject.
+*/
 int	main(int argc, char **argv)
 {
 	int	i;
